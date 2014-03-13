@@ -24,7 +24,7 @@ class Image
         $frame->generate();
 
         $image = imagecreatetruecolor($frame->getHeight(), $frame->getWidth());
-        imagefilledrectangle($image, 0, 0, $frame->getHeight(), $frame->getWidth(), imagecolorallocate($image, 0, 0, 0));
+        imagefilledrectangle($image, 0, 0, $frame->getHeight(), $frame->getWidth(), imagecolorallocate($image, 255, 255, 255));
 
         /** @var $row Cube[] */
         foreach($frame->getRows() as $row) {

@@ -25,43 +25,34 @@ class Frame
         $this->calculateHeight();
         $this->calculateWidth();
 
+        $margin =  + $this->getConfig()->getMargin();
+
         $nullY = 0;
-        $rowCount = 1;
-        $isFirstRow = true;
-        $countRow = 1;
         foreach($this->matrix as $row) {
-            $countCube = 1;
-            $isFirstCube = true;
-            $isLasRow = count($this->matrix) == $countRow;
             $nullX = 0;
             $_row = array();
-            $cubeCount = 1;
             foreach($row as $cube) {
-                $isLastCube = count($row) == $countCube;
                 $_row[] = new Cube(
                     $cube,
-                    $nullX,
-                    $nullY,
-                    $nullX + $this->getConfig()->getCubeWidth() - 1,
-                    $nullY + $this->getConfig()->getCubeHeight() - 1
+                    $nullX + $margin,
+                    $nullY + $margin,
+                    $nullX + $this->getConfig()->getCubeWidth() - 1 + $margin,
+                    $nullY + $this->getConfig()->getCubeHeight() - 1 + $margin
                 );
-                $nullX += $this->getConfig()->getCubeWidth();
-                $cubeCount++;
-                $isFirstCube = false;
+                $nullX += $this->getConfig()->getCubeWidth() + $margin;
             }
-            $nullY += $this->getConfig()->getCubeHeight();
+            $nullY += $this->getConfig()->getCubeHeight() + $margin;
             $this->rows[] = $_row;
-            $rowCount++;
-            $isFirstRow = false;
         }
     }
 
     private function calculateHeight()
     {
         $colCount = count($this->matrix[0]);
+        $margin = $this->getConfig()->getMargin();
 
         $height = $colCount * $this->getConfig()->getCubeHeight();
-        $height += ($this->getConfig()->getMargin() * 2) + (($colCount > 1) ? ($this->getConfig()->getMargin() * ($colCount - 2)) : 0);
+        $height += ($colCount * $margin) + $margin;
 
         $this->setHeight($height);
     }
@@ -69,9 +60,10 @@ class Frame
     private function calculateWidth()
     {
         $rowCount = count($this->matrix);
+        $margin = $this->getConfig()->getMargin();
 
         $width = $rowCount * $this->getConfig()->getCubeWidth();
-        $width += ($this->getConfig()->getMargin() * 2) + (($rowCount > 1) ? ($this->getConfig()->getMargin() * ($rowCount - 2)) : 0);
+        $width += ($rowCount * $margin) + $margin;
 
         $this->setWidth($width);
     }
