@@ -2,8 +2,7 @@
 
 namespace Cubes;
 
-use Cubes\Config\Config;
-use Cubes\Config\Standart;
+use Cubes\Config;
 
 class Frame
 {
@@ -14,9 +13,9 @@ class Frame
 
     private $rows = array();
 
-    public function __construct(array $matrix, Config $config = null)
+    public function __construct(array $matrix, Config $config)
     {
-        $this->config = (!is_null($config)) ? $config : new Standart();
+        $this->config = $config;
         $this->matrix = $matrix;
     }
 
@@ -25,7 +24,7 @@ class Frame
         $this->calculateHeight();
         $this->calculateWidth();
 
-        $margin =  + $this->getConfig()->getMargin();
+        $margin = $this->getConfig()->getMargin();
 
         $nullY = 0;
         foreach($this->matrix as $row) {

@@ -10,9 +10,7 @@ $matrix = array(
     array(1, 1, 1, 1, 1),
 );
 
-$config = new \Cubes\Config\Config(30, 30, 2);
-$config->addColor(0, array(255, 0, 0));
-$config->addColor(1, array(255, 255, 255));
+$config = new \Cubes\Config(30, 30, 1);
 
 $image = new \Cubes\Image($matrix, $config);
 $image->generate();

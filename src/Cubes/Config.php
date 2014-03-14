@@ -1,21 +1,19 @@
 <?php
 
-namespace Cubes\Config;
+namespace Cubes;
 
 class Config
 {
 
-    protected $colorExchange = array();
     protected $cubeHeight = 30;
     protected $cubeWidth = 30;
     protected $margin = 0;
 
-    public function __construct($cubeHeight, $cubeWidth, $margin, array $colorExchange = array())
+    public function __construct($cubeHeight, $cubeWidth, $margin)
     {
         $this->cubeHeight = $cubeHeight;
         $this->cubeWidth = $cubeWidth;
         $this->margin = $margin;
-        $this->colorExchange = $colorExchange;
     }
 
     public function setCubeHeight($cubeHeight)
@@ -47,20 +45,5 @@ class Config
     {
         return $this->margin;
     }
-
-    public function addColor($key, array $color)
-    {
-        $this->colorExchange[$key] = $color;
-    }
-
-    public function getColor($key)
-    {
-        if(!array_key_exists($key, $this->colorExchange)) {
-            throw new \ErrorException('Unknown color');
-        }
-
-        return $this->colorExchange[$key];
-    }
-
 
 }

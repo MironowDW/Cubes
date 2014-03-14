@@ -2,8 +2,7 @@
 
 namespace Cubes;
 
-use Cubes\Config\Config;
-use Cubes\Config\Standart;
+use Cubes\Config;
 
 class Image
 {
@@ -12,10 +11,16 @@ class Image
     private $matrix;
     private $image;
 
-    public function __construct(array $matrix, Config $config = null)
+    /** @var Color[] */
+    private $colors = array();
+
+    public function __construct(array $matrix, Config $config)
     {
-        $this->config = (!is_null($config)) ? $config : new Standart();
+        $this->config = $config;
         $this->matrix = $matrix;
+
+        $this->addColor(0, new Color(0, 0, 0));
+        $this->addColor(1, new Color(255, 255, 255));
     }
 
     public function generate()
@@ -29,8 +34,9 @@ class Image
         /** @var $row Cube[] */
         foreach($frame->getRows() as $row) {
             foreach($row as $cube) {
-                $color = $this->getConfig()->getColor($cube->getKey());
-                $color = imagecolorallocate($image, $color[0], $color[1], $color[2]);
+                $color = $this->getColor($cube->getKey());
+                $color = imagecolorallocate($image, $color->getRed(), $color->getGreen(), $color->getBlue());
+
                 imagefilledrectangle($image, $cube->getX1(), $cube->getY1(), $cube->getX2(), $cube->getY2(), $color);
             }
         }
@@ -44,6 +50,20 @@ class Image
 
         imagepng($this->image);
         imagedestroy($this->image);
+    }
+
+    public function addColor($key, Color $color)
+    {
+        $this->colors[$key] = $color;
+    }
+
+    public function getColor($key)
+    {
+        if(!array_key_exists($key, $this->colors)) {
+            throw new \ErrorException('Unknown color');
+        }
+
+        return $this->colors[$key];
     }
 
     public function getConfig()

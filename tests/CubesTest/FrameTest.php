@@ -130,7 +130,7 @@ class FrameTest extends \PHPUnit_Framework_TestCase
 
     private function buildFrame($matrix, $height, $width, $margin = 0)
     {
-        $config = new \Cubes\Config\Config($height, $width, $margin);
+        $config = new \Cubes\Config($height, $width, $margin);
         $frame  = new \Cubes\Frame($matrix, $config);
         $frame->generate();
 
