@@ -5,24 +5,29 @@ Cubes - это библиотека для генерации картинок �
 
 Пример генерации картинки:
 
-![My image](http://ru.gravatar.com/userimage/62595973/2bf09dfbf632e71b6feca277e5caf576.png)
+![My image](http://cs14107.vk.me/c614721/v614721749/771c/A52D_c0tkTc.jpg)
 
 ```php
 <?php
 
 $matrix = array(
-    array(0, 0, 1, 0, 0),
-    array(1, 0, 0, 0, 1),
-    array(0, 1, 0, 1, 0),
-    array(0, 1, 1, 1, 0),
-    array(0, 1, 1, 1, 0),
+    array(0, 1, 2, 3, 4),
+    array(1, 2, 3, 4, 5),
+    array(2, 3, 4, 5, 6),
+    array(3, 4, 5, 6, 7),
+    array(4, 5, 6, 7, 8),
 );
 
-$config = new \Cubes\Config\Config(30, 30, 2);
-$config->addColor(0, array(255, 0, 0));
-$config->addColor(1, array(255, 255, 255));
-
-$image = new \Cubes\Image($matrix, $config);
+$image = new \Cubes\Image($matrix, new \Cubes\Config(30, 30, 1));
+$image->addColor(0, new \Cubes\Color(204, 229, 255));
+$image->addColor(1, new \Cubes\Color(153, 204, 255));
+$image->addColor(2, new \Cubes\Color(102, 178, 255));
+$image->addColor(3, new \Cubes\Color(51, 153, 255));
+$image->addColor(4, new \Cubes\Color(0, 128, 255));
+$image->addColor(5, new \Cubes\Color(0, 102, 204));
+$image->addColor(6, new \Cubes\Color(0, 76, 153));
+$image->addColor(7, new \Cubes\Color(0, 51, 102));
+$image->addColor(8, new \Cubes\Color(0, 25, 51));
 $image->generate();
 $image->printImage();
 ```
