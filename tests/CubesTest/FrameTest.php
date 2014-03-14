@@ -6,86 +6,86 @@ class FrameTest extends \PHPUnit_Framework_TestCase
     public function testRowsWithMargin3x1()
     {
         $frame = $this->buildFrame($this->genMatrix(3,1), 100, 100, 10);
-        $rows = $frame->getRows();
+        $cubes = $frame->getCubes();
 
-        $this->assertEqualsCube($this->compactCube(10, 10, 109, 109), $rows[0][0]);
-        $this->assertEqualsCube($this->compactCube(10, 120, 109, 219), $rows[1][0]);
-        $this->assertEqualsCube($this->compactCube(10, 230, 109, 329), $rows[2][0]);
+        $this->assertEqualsCube($this->compactCube(10, 10, 109, 109), $cubes[0]);
+        $this->assertEqualsCube($this->compactCube(10, 120, 109, 219), $cubes[1]);
+        $this->assertEqualsCube($this->compactCube(10, 230, 109, 329), $cubes[2]);
     }
 
     public function testRowsWithMargin1x3()
     {
         $frame = $this->buildFrame($this->genMatrix(1,3), 100, 100, 10);
-        $rows = $frame->getRows();
+        $cubes = $frame->getCubes();
 
-        $this->assertEqualsCube($this->compactCube(10, 10, 109, 109), $rows[0][0]);
-        $this->assertEqualsCube($this->compactCube(120, 10, 219, 109), $rows[0][1]);
-        $this->assertEqualsCube($this->compactCube(230, 10, 329, 109), $rows[0][2]);
+        $this->assertEqualsCube($this->compactCube(10, 10, 109, 109), $cubes[0]);
+        $this->assertEqualsCube($this->compactCube(120, 10, 219, 109), $cubes[1]);
+        $this->assertEqualsCube($this->compactCube(230, 10, 329, 109), $cubes[2]);
     }
 
     public function testRowsWithoutMargin3x1()
     {
         $frame = $this->buildFrame($this->genMatrix(3,1), 10, 10);
-        $rows = $frame->getRows();
+        $cubes = $frame->getCubes();
 
-        $this->assertEqualsCube($this->compactCube(0, 0, 9, 9), $rows[0][0]);
-        $this->assertEqualsCube($this->compactCube(0, 10, 9, 19), $rows[1][0]);
-        $this->assertEqualsCube($this->compactCube(0, 20, 9, 29), $rows[2][0]);
+        $this->assertEqualsCube($this->compactCube(0, 0, 9, 9), $cubes[0]);
+        $this->assertEqualsCube($this->compactCube(0, 10, 9, 19), $cubes[1]);
+        $this->assertEqualsCube($this->compactCube(0, 20, 9, 29), $cubes[2]);
     }
 
     public function testRowsWithoutMargin1x3()
     {
         $frame = $this->buildFrame($this->genMatrix(1,3), 10, 10);
-        $rows = $frame->getRows();
+        $cubes = $frame->getCubes();
 
-        $this->assertEqualsCube($this->compactCube(0, 0, 9, 9), $rows[0][0]);
-        $this->assertEqualsCube($this->compactCube(10, 0, 19, 9), $rows[0][1]);
-        $this->assertEqualsCube($this->compactCube(20, 0, 29, 9), $rows[0][2]);
+        $this->assertEqualsCube($this->compactCube(0, 0, 9, 9), $cubes[0]);
+        $this->assertEqualsCube($this->compactCube(10, 0, 19, 9), $cubes[1]);
+        $this->assertEqualsCube($this->compactCube(20, 0, 29, 9), $cubes[2]);
     }
 
     public function testRowsWithoutMargin2x2()
     {
         $frame = $this->buildFrame($this->genMatrix(2,2), 10, 10);
-        $rows = $frame->getRows();
+        $cubes = $frame->getCubes();
 
-        $this->assertEqualsCube($this->compactCube(0, 0, 9, 9), $rows[0][0]);
-        $this->assertEqualsCube($this->compactCube(10, 0, 19, 9), $rows[0][1]);
-        $this->assertEqualsCube($this->compactCube(0, 10, 9, 19), $rows[1][0]);
-        $this->assertEqualsCube($this->compactCube(10, 10, 19, 19), $rows[1][1]);
+        $this->assertEqualsCube($this->compactCube(0, 0, 9, 9), $cubes[0]);
+        $this->assertEqualsCube($this->compactCube(10, 0, 19, 9), $cubes[1]);
+        $this->assertEqualsCube($this->compactCube(0, 10, 9, 19), $cubes[2]);
+        $this->assertEqualsCube($this->compactCube(10, 10, 19, 19), $cubes[3]);
     }
 
     public function testRowsWithMargin1x2()
     {
         $frame = $this->buildFrame($this->genMatrix(1,2), 100, 100, 10);
-        $rows = $frame->getRows();
+        $cubes = $frame->getCubes();
 
-        $this->assertEqualsCube($this->compactCube(10, 10, 109, 109), $rows[0][0]);
-        $this->assertEqualsCube($this->compactCube(120, 10, 219, 109), $rows[0][1]);
+        $this->assertEqualsCube($this->compactCube(10, 10, 109, 109), $cubes[0]);
+        $this->assertEqualsCube($this->compactCube(120, 10, 219, 109), $cubes[1]);
     }
 
     public function testRowsWithoutMargin1x2()
     {
         $frame = $this->buildFrame($this->genMatrix(1,2), 10, 10);
-        $rows = $frame->getRows();
+        $cubes = $frame->getCubes();
 
-        $this->assertEqualsCube($this->compactCube(0, 0, 9, 9), $rows[0][0]);
-        $this->assertEqualsCube($this->compactCube(10, 0, 19, 9), $rows[0][1]);
+        $this->assertEqualsCube($this->compactCube(0, 0, 9, 9), $cubes[0]);
+        $this->assertEqualsCube($this->compactCube(10, 0, 19, 9), $cubes[1]);
     }
 
     public function testRowsWithoutMargin1x1()
     {
         $frame = $this->buildFrame($this->genMatrix(1,1), 10, 10);
-        $rows = $frame->getRows();
+        $cubes = $frame->getCubes();
 
-        $this->assertEqualsCube($this->compactCube(0, 0, 9, 9), $rows[0][0]);
+        $this->assertEqualsCube($this->compactCube(0, 0, 9, 9), $cubes[0]);
     }
 
     public function testRowsWithMargin1x1()
     {
         $frame = $this->buildFrame($this->genMatrix(1,1), 100, 100, 10);
-        $rows = $frame->getRows();
+        $cubes = $frame->getCubes();
 
-        $this->assertEqualsCube($this->compactCube(10, 10, 109, 109), $rows[0][0]);
+        $this->assertEqualsCube($this->compactCube(10, 10, 109, 109), $cubes[0]);
     }
 
     public function testHeightWidthWithoutMargin1x1()

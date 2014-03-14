@@ -11,7 +11,8 @@ class Frame
     private $height;
     private $width;
 
-    private $rows = array();
+    /** @var Cube[] */
+    private $cubes = array();
 
     public function __construct(array $matrix, Config $config)
     {
@@ -29,9 +30,8 @@ class Frame
         $nullY = 0;
         foreach($this->matrix as $row) {
             $nullX = 0;
-            $_row = array();
             foreach($row as $cube) {
-                $_row[] = new Cube(
+                $this->cubes[] = new Cube(
                     $cube,
                     $nullX + $margin,
                     $nullY + $margin,
@@ -41,7 +41,6 @@ class Frame
                 $nullX += $this->getConfig()->getCubeWidth() + $margin;
             }
             $nullY += $this->getConfig()->getCubeHeight() + $margin;
-            $this->rows[] = $_row;
         }
     }
 
@@ -92,9 +91,9 @@ class Frame
         return $this->config;
     }
 
-    public function getRows()
+    public function getCubes()
     {
-        return $this->rows;
+        return $this->cubes;
     }
 
 }

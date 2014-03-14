@@ -31,14 +31,11 @@ class Image
         $image = imagecreatetruecolor($frame->getHeight(), $frame->getWidth());
         imagefilledrectangle($image, 0, 0, $frame->getHeight(), $frame->getWidth(), imagecolorallocate($image, 255, 255, 255));
 
-        /** @var $row Cube[] */
-        foreach($frame->getRows() as $row) {
-            foreach($row as $cube) {
-                $color = $this->getColor($cube->getKey());
-                $color = imagecolorallocate($image, $color->getRed(), $color->getGreen(), $color->getBlue());
+        foreach($frame->getCubes() as $cube) {
+            $color = $this->getColor($cube->getKey());
+            $color = imagecolorallocate($image, $color->getRed(), $color->getGreen(), $color->getBlue());
 
-                imagefilledrectangle($image, $cube->getX1(), $cube->getY1(), $cube->getX2(), $cube->getY2(), $color);
-            }
+            imagefilledrectangle($image, $cube->getX1(), $cube->getY1(), $cube->getX2(), $cube->getY2(), $color);
         }
 
         $this->image = $image;

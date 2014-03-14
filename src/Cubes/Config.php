@@ -7,7 +7,7 @@ class Config
 
     protected $cubeHeight = 30;
     protected $cubeWidth = 30;
-    protected $margin = 0;
+    protected $margin = 1;
 
     public function __construct($cubeHeight, $cubeWidth, $margin)
     {
