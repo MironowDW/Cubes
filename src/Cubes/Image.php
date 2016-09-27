@@ -2,51 +2,178 @@
 
 namespace Cubes;
 
-use Cubes\Config;
+use Cubes\Generator\GdGenerator;
+use Cubes\Generator\GeneratorInterface;
 
 class Image
 {
 
-    private $config;
-    private $matrix;
-    private $image;
+    private $elementHeight = 30;
+    private $elementWidth = 30;
+    private $elementMargin = 1;
 
-    /** @var Color[] */
+    private $backgroundColor;
+    private $matrix;
+
+    private $isGenerated = false;
+
+    /**
+     * @var Color[]
+     */
     private $colors = array();
 
-    public function __construct(array $matrix, Config $config)
+    /**
+     * @var GeneratorInterface
+     */
+    private $generator;
+
+    public function __construct(array $matrix, GeneratorInterface $generator = null)
     {
-        $this->config = $config;
         $this->matrix = $matrix;
+        $this->backgroundColor = new Color(255, 255, 255);
+        $this->generator = $generator ? $generator : new GdGenerator();
 
         $this->addColor(0, new Color(0, 0, 0));
         $this->addColor(1, new Color(255, 255, 255));
     }
 
+    /**
+     * @return int
+     */
+    public function getElementHeight()
+    {
+        return $this->elementHeight;
+    }
+
+    /**
+     * @param int $elementHeight
+     */
+    public function setElementHeight($elementHeight)
+    {
+        $this->elementHeight = $elementHeight;
+    }
+
+    /**
+     * @return int
+     */
+    public function getElementWidth()
+    {
+        return $this->elementWidth;
+    }
+
+    /**
+     * @param int $elementWidth
+     */
+    public function setElementWidth($elementWidth)
+    {
+        $this->elementWidth = $elementWidth;
+    }
+
+    /**
+     * @return int
+     */
+    public function getElementMargin()
+    {
+        return $this->elementMargin;
+    }
+
+    /**
+     * @param int $elementMargin
+     */
+    public function setElementMargin($elementMargin)
+    {
+        $this->elementMargin = $elementMargin;
+    }
+
+    /**
+     * @param Color $backgroundColor
+     */
+    public function setBackgroundColor(Color $backgroundColor)
+    {
+        $this->backgroundColor = $backgroundColor;
+    }
+
     public function generate()
     {
-        $frame = new Frame($this->matrix, $this->getConfig());
-        $frame->generate();
-
-        $image = imagecreatetruecolor($frame->getHeight(), $frame->getWidth());
-        imagefilledrectangle($image, 0, 0, $frame->getHeight(), $frame->getWidth(), imagecolorallocate($image, 255, 255, 255));
-
-        foreach($frame->getCubes() as $cube) {
-            $color = $this->getColor($cube->getKey());
-            $color = imagecolorallocate($image, $color->getRed(), $color->getGreen(), $color->getBlue());
-
-            imagefilledrectangle($image, $cube->getX1(), $cube->getY1(), $cube->getX2(), $cube->getY2(), $color);
+        if ($this->isGenerated) {
+            return;
         }
 
-        $this->image = $image;
+        $height = $this->calculateHeight();
+        $width = $this->calculateWidth();
+
+        $this->generator->initImage($width, $height, $this->backgroundColor);
+
+        foreach($this->generateElements() as $element) {
+            $color = $this->getColor($element->getKey());
+
+            $this->generator->drawRectangle($element, $color);
+        }
+
+        $this->isGenerated = true;
+    }
+
+    /**
+     * @return Element[]
+     */
+    public function generateElements()
+    {
+        $margin = $this->elementMargin;
+        $elements = [];
+
+        $nullY = 0;
+        foreach($this->matrix as $row) {
+            $nullX = 0;
+            foreach($row as $cube) {
+                $elements[] = new Element(
+                    $cube,
+                    $nullX + $margin,
+                    $nullY + $margin,
+                    $nullX + $this->elementWidth - 1 + $margin,
+                    $nullY + $this->elementHeight - 1 + $margin
+                );
+                $nullX += $this->elementWidth + $margin;
+            }
+            $nullY += $this->elementHeight + $margin;
+        }
+
+        return $elements;
+    }
+
+    private function calculateHeight()
+    {
+        $colCount = count($this->matrix[0]);
+        $margin = $this->elementMargin;
+
+        $height = $colCount * $this->elementHeight;
+        $height += ($colCount * $margin) + $margin;
+
+        return $height;
+    }
+
+    private function calculateWidth()
+    {
+        $rowCount = count($this->matrix);
+        $margin = $this->elementMargin;
+
+        $width = $rowCount * $this->elementWidth;
+        $width += ($rowCount * $margin) + $margin;
+
+        return $width;
     }
 
     public function printImage()
     {
-        header ('Content-Type: image/png');
+        $this->generate();
 
-        imagepng($this->image);
-        imagedestroy($this->image);
+        $this->generator->print();
+    }
+
+    public function saveImage($path)
+    {
+        $this->generate();
+
+        $this->generator->save($path);
     }
 
     public function addColor($key, Color $color)
@@ -62,10 +189,4 @@ class Image
 
         return $this->colors[$key];
     }
-
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
 }

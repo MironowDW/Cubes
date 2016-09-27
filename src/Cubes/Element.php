@@ -2,7 +2,7 @@
 
 namespace Cubes;
 
-class Cube
+class Element
 {
 
     private $x1;
