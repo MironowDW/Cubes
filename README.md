@@ -10,7 +10,7 @@ PatternGif - это библиотека для генерации картин�
 ```php
 <?php
 
-$matrix = array(
+$pattern = array(
     array(0, 1, 2, 3, 4),
     array(1, 2, 3, 4, 5),
     array(2, 3, 4, 5, 6),
@@ -18,7 +18,7 @@ $matrix = array(
     array(4, 5, 6, 7, 8),
 );
 
-$image = new \PatternGif\Image($matrix, new \PatternGif\Config(30, 30, 1));
+$image = new \PatternGif\Image($pattern, new \PatternGif\Config(30, 30, 1));
 $image->addColor(0, new \PatternGif\Color(204, 229, 255));
 $image->addColor(1, new \PatternGif\Color(153, 204, 255));
 $image->addColor(2, new \PatternGif\Color(102, 178, 255));

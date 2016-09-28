@@ -13,7 +13,7 @@ class Image
     private $elementMargin = 1;
 
     private $backgroundColor;
-    private $matrix;
+    private $pattern;
 
     private $isGenerated = false;
 
@@ -27,9 +27,9 @@ class Image
      */
     private $generator;
 
-    public function __construct(array $matrix, GeneratorInterface $generator = null)
+    public function __construct(array $pattern, GeneratorInterface $generator = null)
     {
-        $this->matrix = $matrix;
+        $this->pattern = $pattern;
         $this->backgroundColor = new Color(255, 255, 255);
         $this->generator = $generator ? $generator : new GdGenerator();
 
@@ -122,7 +122,7 @@ class Image
         $elements = [];
 
         $nullY = 0;
-        foreach($this->matrix as $row) {
+        foreach($this->pattern as $row) {
             $nullX = 0;
             foreach($row as $cube) {
                 $elements[] = new Element(
@@ -142,7 +142,7 @@ class Image
 
     private function calculateHeight()
     {
-        $colCount = count($this->matrix[0]);
+        $colCount = count($this->pattern[0]);
         $margin = $this->elementMargin;
 
         $height = $colCount * $this->elementHeight;
@@ -153,7 +153,7 @@ class Image
 
     private function calculateWidth()
     {
-        $rowCount = count($this->matrix);
+        $rowCount = count($this->pattern);
         $margin = $this->elementMargin;
 
         $width = $rowCount * $this->elementWidth;
