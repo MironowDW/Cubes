@@ -1,9 +1,9 @@
 <?php
 
-namespace Cubes\Generator;
+namespace PatternGif\Generator;
 
-use Cubes\Color;
-use Cubes\Element;
+use PatternGif\Color;
+use PatternGif\Element;
 
 interface GeneratorInterface
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Cubes;
+namespace PatternGif;
 
-use Cubes\Generator\GdGenerator;
-use Cubes\Generator\GeneratorInterface;
+use PatternGif\Generator\GdGenerator;
+use PatternGif\Generator\GeneratorInterface;
 
 class Image
 {

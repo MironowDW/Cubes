@@ -8,7 +8,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGenerateOneBlackBoxWithoutMargin()
     {
-        $image = new \Cubes\Image([[0]]);
+        $image = new \PatternGif\Image([[0]]);
         $image->setElementMargin(0);
 
         $this->assertPng(__DIR__ . '/images/1_black_box_30x30x0.png', $image);
@@ -19,7 +19,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGenerateOneBlackBoxWithMargin()
     {
-        $image = new \Cubes\Image([[0]]);
+        $image = new \PatternGif\Image([[0]]);
         $image->setElementMargin(5);
 
         $this->assertPng(__DIR__ . '/images/1_black_box_30x30x5.png', $image);
@@ -30,7 +30,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGenerateOneBlackBoxWithUserElementHeight()
     {
-        $image = new \Cubes\Image([[0]]);
+        $image = new \PatternGif\Image([[0]]);
         $image->setElementHeight(50);
         $image->setElementMargin(0);
 
@@ -42,7 +42,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGenerateOneBlackBoxWithUserElementWidth()
     {
-        $image = new \Cubes\Image([[0]]);
+        $image = new \PatternGif\Image([[0]]);
         $image->setElementWidth(50);
         $image->setElementMargin(0);
 
@@ -54,10 +54,10 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGenerateOneRedBoxWithUserColor()
     {
-        $image = new \Cubes\Image([[2]]);
+        $image = new \PatternGif\Image([[2]]);
         $image->setElementMargin(0);
 
-        $image->addColor(2, new \Cubes\Color(255, 0, 0));
+        $image->addColor(2, new \PatternGif\Color(255, 0, 0));
 
         $this->assertPng(__DIR__ . '/images/1_red_box_30x30x0.png', $image);
     }
@@ -67,13 +67,13 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGenerateOneBlackBoxWithUserBackground()
     {
-        $image = new \Cubes\Image([[0]]);
-        $image->setBackgroundColor(new \Cubes\Color(255, 0, 0));
+        $image = new \PatternGif\Image([[0]]);
+        $image->setBackgroundColor(new \PatternGif\Color(255, 0, 0));
 
         $this->assertPng(__DIR__ . '/images/1_black_box_30x30x1_with_red_back.png', $image);
     }
 
-    protected function assertPng($expectedFile, \Cubes\Image $actualImage)
+    protected function assertPng($expectedFile, \PatternGif\Image $actualImage)
     {
         ob_start();
         $actualImage->printImage();

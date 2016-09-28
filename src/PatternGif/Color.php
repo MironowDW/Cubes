@@ -1,6 +1,6 @@
 <?php
 
-namespace Cubes;
+namespace PatternGif;
 
 class Color
 {
