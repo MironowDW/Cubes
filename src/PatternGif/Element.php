@@ -45,5 +45,4 @@ class Element
     {
         return $this->y2;
     }
-
 }

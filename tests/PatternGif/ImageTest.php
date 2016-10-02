@@ -80,7 +80,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $actualPng = ob_get_contents();
         ob_end_clean();
 
-//        file_put_contents(__DIR__ . '/images/test.png', $actualPng);
+        file_put_contents(__DIR__ . '/images/test.png', $actualPng);
 
         $this->assertEquals(file_get_contents($expectedFile), $actualPng);
     }

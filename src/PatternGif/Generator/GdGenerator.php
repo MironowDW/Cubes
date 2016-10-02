@@ -16,7 +16,7 @@ class GdGenerator implements GeneratorInterface
 
         $background = $this->convertColor($backgroundColor);
 
-        imagefilledrectangle($this->resource, 0, 0, $height, $width, $background);
+        imagefilledrectangle($this->resource, 0, 0, $width, $height, $background);
     }
 
     public function drawRectangle(Element $cube, Color $color)

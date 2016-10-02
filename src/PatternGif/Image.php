@@ -20,7 +20,7 @@ class Image
     /**
      * @var Color[]
      */
-    private $colors = array();
+    private $colors = [];
 
     /**
      * @var GeneratorInterface
@@ -142,7 +142,7 @@ class Image
 
     private function calculateHeight()
     {
-        $colCount = count($this->pattern[0]);
+        $colCount = count($this->pattern);
         $margin = $this->elementMargin;
 
         $height = $colCount * $this->elementHeight;
@@ -153,7 +153,7 @@ class Image
 
     private function calculateWidth()
     {
-        $rowCount = count($this->pattern);
+        $rowCount = count($this->pattern[0]);
         $margin = $this->elementMargin;
 
         $width = $rowCount * $this->elementWidth;

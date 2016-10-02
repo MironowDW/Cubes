@@ -30,5 +30,4 @@ class Color
     {
         return $this->red;
     }
-
 }
