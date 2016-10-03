@@ -1,11 +1,12 @@
 PatternGif
+![Travis](https://travis-ci.org/MironowDW/PatternGif.svg?branch=master)
 ========
 
 PatternGif - это библиотека для генерации картинок состоящих из квадратов
 
 Пример генерации картинки:
 
-![My image](http://cs14107.vk.me/c614721/v614721749/771c/A52D_c0tkTc.jpg)
+![Example](http://cs14107.vk.me/c614721/v614721749/771c/A52D_c0tkTc.jpg)
 
 ```php
 <?php
