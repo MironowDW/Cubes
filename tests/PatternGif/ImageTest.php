@@ -1,5 +1,7 @@
 <?php
 
+use PatternGif\Shape;
+
 class ImageTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -8,7 +10,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGenerateOneBlackBoxWithoutMargin()
     {
-        $image = new \PatternGif\Image([[0]]);
+        $image = new \PatternGif\Image([[1]]);
         $image->setElementMargin(0);
 
         $this->assertPng(__DIR__ . '/images/1_black_box_30x30x0.png', $image);
@@ -19,7 +21,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGenerateOneBlackBoxWithMargin()
     {
-        $image = new \PatternGif\Image([[0]]);
+        $image = new \PatternGif\Image([[1]]);
         $image->setElementMargin(5);
 
         $this->assertPng(__DIR__ . '/images/1_black_box_30x30x5.png', $image);
@@ -30,7 +32,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGenerateOneBlackBoxWithUserElementHeight()
     {
-        $image = new \PatternGif\Image([[0]]);
+        $image = new \PatternGif\Image([[1]]);
         $image->setElementHeight(50);
         $image->setElementMargin(0);
 
@@ -42,7 +44,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGenerateOneBlackBoxWithUserElementWidth()
     {
-        $image = new \PatternGif\Image([[0]]);
+        $image = new \PatternGif\Image([[1]]);
         $image->setElementWidth(50);
         $image->setElementMargin(0);
 
@@ -67,10 +69,54 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGenerateOneBlackBoxWithUserBackground()
     {
-        $image = new \PatternGif\Image([[0]]);
+        $image = new \PatternGif\Image([[1]]);
         $image->setBackgroundColor(new \PatternGif\Color(255, 0, 0));
 
         $this->assertPng(__DIR__ . '/images/1_black_box_30x30x1_with_red_back.png', $image);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGenerateOneBlackTriangleTopLeft()
+    {
+        $image = new \PatternGif\Image([[1]]);
+        $image->addShape(1, Shape\ShapeTriangleTopLeft::class);
+
+        $this->assertPng(__DIR__ . '/images/1_black_triangle-top-left_30x30x1.png', $image);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGenerateOneBlackTriangleTopRight()
+    {
+        $image = new \PatternGif\Image([[1]]);
+        $image->addShape(1, Shape\ShapeTriangleTopRight::class);
+
+        $this->assertPng(__DIR__ . '/images/1_black_triangle-top-right_30x30x1.png', $image);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGenerateOneBlackTriangleBottomLeft()
+    {
+        $image = new \PatternGif\Image([[1]]);
+        $image->addShape(1, Shape\ShapeTriangleBottomLeft::class);
+
+        $this->assertPng(__DIR__ . '/images/1_black_triangle-bottom-left_30x30x1.png', $image);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGenerateOneBlackTriangleBottomRight()
+    {
+        $image = new \PatternGif\Image([[1]]);
+        $image->addShape(1, Shape\ShapeTriangleBottomRight::class);
+
+        $this->assertPng(__DIR__ . '/images/1_black_triangle-bottom-right_30x30x1.png', $image);
     }
 
     protected function assertPng($expectedFile, \PatternGif\Image $actualImage)

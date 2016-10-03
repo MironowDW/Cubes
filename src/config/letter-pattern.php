@@ -1,7 +1,11 @@
 <?php
 
+use PatternGif\Shape\ShapeTriangleBottomRight;
+use PatternGif\Shape\ShapeTriangleBottomLeft;
+
 return [
-    'A' => [
+    // Russian
+    'А' => [
         'pattern' => [
             [2, 1, 3],
             [1, 0, 1],
@@ -10,8 +14,8 @@ return [
             [1, 0, 1],
         ],
         'shapes' => [
-            2 => 'triangleBottomLeft',
-            3 => 'triangleBottomRight',
+            2 => ShapeTriangleBottomRight::class,
+            3 => ShapeTriangleBottomLeft::class,
         ],
     ],
 ];

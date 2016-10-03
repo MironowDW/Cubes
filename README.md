@@ -18,7 +18,7 @@ $pattern = [
     [4, 5, 6, 7, 8],
 ];
 
-$image = new \PatternGif\Image($pattern, new \PatternGif\Config(30, 30, 1));
+$image = new \PatternGif\Image($pattern);
 $image->addColor(0, new \PatternGif\Color(204, 229, 255));
 $image->addColor(1, new \PatternGif\Color(153, 204, 255));
 $image->addColor(2, new \PatternGif\Color(102, 178, 255));

@@ -4,6 +4,9 @@ namespace PatternGif;
 
 use PatternGif\Generator\GdGenerator;
 use PatternGif\Generator\GeneratorInterface;
+use PatternGif\Shape\EmptyShape;
+use PatternGif\Shape\ShapeInterface;
+use PatternGif\Shape\RectangleShape;
 
 class Image
 {
@@ -23,6 +26,11 @@ class Image
     private $colors = [];
 
     /**
+     * @var string[]
+     */
+    private $shapes = [];
+
+    /**
      * @var GeneratorInterface
      */
     private $generator;
@@ -33,8 +41,10 @@ class Image
         $this->backgroundColor = new Color(255, 255, 255);
         $this->generator = $generator ? $generator : new GdGenerator();
 
-        $this->addColor(0, new Color(0, 0, 0));
-        $this->addColor(1, new Color(255, 255, 255));
+        $this->addShape(0, EmptyShape::class);
+
+        $this->addColor(1, new Color(0, 0, 0));
+
     }
 
     /**
@@ -106,8 +116,9 @@ class Image
 
         foreach($this->generateElements() as $element) {
             $color = $this->getColor($element->getKey());
+            $shape = $this->getShape($element->getKey());
 
-            $this->generator->drawRectangle($element, $color);
+            $shape->draw($this->generator, $element, $color);
         }
 
         $this->isGenerated = true;
@@ -181,12 +192,38 @@ class Image
         $this->colors[$key] = $color;
     }
 
+    public function addShape($key, $shapeClass)
+    {
+        $this->shapes[$key] = $shapeClass;
+    }
+
     public function getColor($key)
     {
-        if(!array_key_exists($key, $this->colors)) {
-            throw new \ErrorException('Unknown color');
+        return array_key_exists($key, $this->colors)
+            ? $this->colors[$key]
+            : new Color(0, 0, 0);
+    }
+
+    /**
+     * @param $key
+     * @return ShapeInterface
+     *
+     * @throws \Exception
+     */
+    public function getShape($key)
+    {
+        $shapeClass = (array_key_exists($key, $this->shapes))
+            ? $this->shapes[$key]
+            : RectangleShape::class;
+
+        if (!class_exists($shapeClass)) {
+            throw new \Exception('Shape class not found');
         }
 
-        return $this->colors[$key];
+        if (!is_a($shapeClass, ShapeInterface::class, true)) {
+            throw new \Exception('Shape class is invalid');
+        }
+
+        return new $shapeClass();
     }
 }
