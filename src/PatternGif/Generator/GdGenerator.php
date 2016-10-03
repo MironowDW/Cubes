@@ -26,24 +26,11 @@ class GdGenerator implements GeneratorInterface
         imagefilledrectangle($this->resource, $cube->getX1(), $cube->getY1(), $cube->getX2(), $cube->getY2(), $color);
     }
 
-    /**
-     * TODO
-     */
-    public function drawEllipse(Element $cube, Color $color)
+    public function drawPolygon(array $points, $pointsCount, Color $color)
     {
         $color = $this->convertColor($color);
-//$cx
-//$cy
-//$width
-//$height
-        imagefilledellipse(
-            $this->resource,
-            (($cube->getX2() - $cube->getX1()) / 2),
-            (($cube->getY2() - $cube->getY1()) / 2),
-            ($cube->getX2() - $cube->getX1()),
-            ($cube->getY2() - $cube->getY1()),
-            $color
-        );
+
+        imagefilledpolygon($this->resource, $points, $pointsCount, $color);
     }
 
     public function printImage()
