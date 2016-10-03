@@ -46,13 +46,13 @@ class GdGenerator implements GeneratorInterface
         );
     }
 
-    public function print()
+    public function printImage()
     {
         imagepng($this->resource);
         imagedestroy($this->resource);
     }
 
-    public function save($path)
+    public function saveImage($path)
     {
         imagepng($this->resource, $path);
         imagedestroy($this->resource);

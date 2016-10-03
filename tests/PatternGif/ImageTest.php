@@ -75,13 +75,36 @@ class ImageTest extends \PHPUnit_Framework_TestCase
 
     protected function assertPng($expectedFile, \PatternGif\Image $actualImage)
     {
-        ob_start();
-        $actualImage->printImage();
-        $actualPng = ob_get_contents();
-        ob_end_clean();
+        $actualFile = str_replace('.png', '_actual.png', $expectedFile);
+        $actualImage->saveImage($actualFile);
 
-        file_put_contents(__DIR__ . '/images/test.png', $actualPng);
+        $this->assertImage($expectedFile, $actualFile);
+    }
 
-        $this->assertEquals(file_get_contents($expectedFile), $actualPng);
+    /**
+     * sudo apt-get install imagemagick
+     *
+     * @param $expected
+     * @param $actual
+     * @param string $message
+     */
+    protected function assertImage($expected, $actual, $message = '')
+    {
+        $descriptors = array(
+            array('pipe', 'r'),
+            array('pipe', 'w'),
+            array('pipe', 'w'),
+        );
+        $command = 'compare -metric RMSE ' . escapeshellarg($expected) . ' ' . escapeshellarg($actual) . ' /dev/null';
+        $proc = proc_open($command, $descriptors, $pipes);
+
+        $diff = stream_get_contents($pipes[2]);
+        fclose($pipes[0]);
+        fclose($pipes[1]);
+        fclose($pipes[2]);
+
+        preg_match('#\((.+)\)#', $diff, $match);
+        $threshold = floatval($match[1]);
+        $this->assertLessThan(0.05, $threshold, $message);
     }
 }

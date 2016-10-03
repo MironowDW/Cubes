@@ -12,6 +12,6 @@ interface GeneratorInterface
 
     public function drawRectangle(Element $cube, Color $backgroundColor);
 
-    public function print();
-    public function save($path);
+    public function printImage();
+    public function saveImage($path);
 }

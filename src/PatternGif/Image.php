@@ -166,14 +166,14 @@ class Image
     {
         $this->generate();
 
-        $this->generator->print();
+        $this->generator->printImage();
     }
 
     public function saveImage($path)
     {
         $this->generate();
 
-        $this->generator->save($path);
+        $this->generator->saveImage($path);
     }
 
     public function addColor($key, Color $color)
