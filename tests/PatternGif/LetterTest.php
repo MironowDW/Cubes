@@ -5,13 +5,25 @@ class LetterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @dataProvider dataProviderRussianAlphabet
      */
-    public function shouldGenerateRussianA()
+    public function shouldGenerateRussianAlphabet($letter)
     {
-        $letter = new \PatternGif\Letter();
-        $image = $letter->generate('А');
+        $letterGenerator = new \PatternGif\Letter();
+        $image = $letterGenerator->generate($letter);
 
-        $this->assertPng(__DIR__ . '/letters/russian_A.png', $image);
+        $this->assertPng(__DIR__ . '/letters/russian_' . $letter . '.png', $image);
+    }
+
+    public function dataProviderRussianAlphabet()
+    {
+        return [
+            ['А'],
+            ['Б'],
+            ['В'],
+            ['Г'],
+            ['Д'],
+        ];
     }
 
     protected function assertPng($expectedFile, \PatternGif\Image $actualImage)

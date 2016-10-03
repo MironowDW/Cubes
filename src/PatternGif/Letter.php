@@ -13,7 +13,7 @@ class Letter
     public function __construct(GeneratorInterface $generator = null, array $letterConfig = null)
     {
         $this->generator = $generator;
-        $this->config = $letterConfig ? $letterConfig : require dirname(__DIR__) . '/config/letter-pattern.php';
+        $this->config = $letterConfig ? $letterConfig : require dirname(__DIR__) . '/config/letter.russian.php';
     }
 
     public function generate($letter)
