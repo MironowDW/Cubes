@@ -1,6 +1,6 @@
 PatternGif
-![Travis](https://travis-ci.org/MironowDW/PatternGif.svg?branch=master)
 ========
+![Travis](https://travis-ci.org/MironowDW/PatternGif.svg?branch=master)
 
 PatternGif - это библиотека для генерации картинок состоящих из квадратов
 
