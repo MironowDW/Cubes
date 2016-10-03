@@ -18,11 +18,9 @@ class LetterTest extends \PHPUnit_Framework_TestCase
     public function dataProviderRussianAlphabet()
     {
         return [
-            ['А'],
-            ['Б'],
-            ['В'],
-            ['Г'],
-            ['Д'],
+            ['А'], ['Б'], ['В'], ['Г'], ['Д'],
+            ['Е'], ['Ё'], ['Ж'], ['З'], ['И'],
+            ['Й'],
         ];
     }
 
