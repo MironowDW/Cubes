@@ -60,7 +60,7 @@ $image->saveImage('/tmp/image.png');
 <?php
 
 $letterGenerator = new \PatternGif\Letter();
-$letterGenerator->generate($letter)->saveImage('/tmp/image_Q.png');
-$letterGenerator->generate($letter)->saveImage('/tmp/image_R.png');
-$letterGenerator->generate($letter)->saveImage('/tmp/image_S.png');
+$letterGenerator->generate('Q')->saveImage('/tmp/image_Q.png');
+$letterGenerator->generate('R')->saveImage('/tmp/image_R.png');
+$letterGenerator->generate('S')->saveImage('/tmp/image_S.png');
 ```
