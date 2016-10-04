@@ -28,6 +28,30 @@ class LetterTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    /**
+     * @test
+     * @dataProvider dataProviderEnglishAlphabet
+     */
+    public function shouldGenerateEnglishAlphabet($letter)
+    {
+        $letterGenerator = new \PatternGif\Letter();
+        $image = $letterGenerator->generate($letter);
+
+        $this->assertPng(__DIR__ . '/letters/english_' . $letter . '.png', $image);
+    }
+
+    public function dataProviderEnglishAlphabet()
+    {
+        return [
+            ['A'], ['B'], ['C'], ['D'], ['E'],
+            ['F'], ['G'], ['H'], ['I'], ['J'],
+            ['K'], ['L'], ['M'], ['N'], ['O'],
+            ['P'], ['Q'], ['R'], ['S'], ['T'],
+            ['U'], ['V'], ['W'], ['X'], ['Y'],
+            ['Z'],
+        ];
+    }
+
     protected function assertPng($expectedFile, \PatternGif\Image $actualImage)
     {
         $actualFile = str_replace('.png', '_actual.png', $expectedFile);

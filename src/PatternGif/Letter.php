@@ -13,7 +13,7 @@ class Letter
     public function __construct(GeneratorInterface $generator = null, array $letterConfig = null)
     {
         $this->generator = $generator;
-        $this->config = $letterConfig ? $letterConfig : require dirname(__DIR__) . '/config/letter.russian.php';
+        $this->config = $letterConfig ? $letterConfig : $this->getDefaultConfig();
     }
 
     public function generate($letter)
@@ -31,5 +31,13 @@ class Letter
         }
 
         return $image;
+    }
+
+    protected function getDefaultConfig()
+    {
+        return array_merge(
+            require dirname(__DIR__) . '/config/letter.russian.php',
+            require dirname(__DIR__) . '/config/letter.english.php'
+        );
     }
 }
