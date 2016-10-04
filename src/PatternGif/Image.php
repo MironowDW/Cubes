@@ -47,27 +47,11 @@ class Image
     }
 
     /**
-     * @return int
-     */
-    public function getElementHeight()
-    {
-        return $this->elementHeight;
-    }
-
-    /**
      * @param int $elementHeight
      */
     public function setElementHeight($elementHeight)
     {
         $this->elementHeight = $elementHeight;
-    }
-
-    /**
-     * @return int
-     */
-    public function getElementWidth()
-    {
-        return $this->elementWidth;
     }
 
     /**
