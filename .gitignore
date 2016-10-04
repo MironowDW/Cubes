@@ -1,4 +1,5 @@
 .idea
 vendor
+build
 tests/PatternGif/images/*_actual.png
 tests/PatternGif/letters/*_actual.png
