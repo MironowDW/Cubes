@@ -119,6 +119,17 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $this->assertPng(__DIR__ . '/images/1_black_triangle-bottom-right_30x30x1.png', $image);
     }
 
+    /**
+     * @test
+     */
+    public function shouldGenerateWithUserDefaultColor()
+    {
+        $image = new \PatternGif\Image([[1]]);
+        $image->setDefaultColor(new \PatternGif\Color(255, 0, 0));
+
+        $this->assertPng(__DIR__ . '/images/1_red_box_30x30x1.png', $image);
+    }
+
     protected function assertPng($expectedFile, \PatternGif\Image $actualImage)
     {
         $actualFile = str_replace('.png', '_actual.png', $expectedFile);

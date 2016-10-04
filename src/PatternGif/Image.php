@@ -16,6 +16,7 @@ class Image
     private $elementMargin = 1;
 
     private $backgroundColor;
+    private $defaultColor;
     private $pattern;
 
     private $isGenerated = false;
@@ -39,12 +40,10 @@ class Image
     {
         $this->pattern = $pattern;
         $this->backgroundColor = new Color(255, 255, 255);
+        $this->defaultColor = new Color(0, 0, 0);
         $this->generator = $generator ? $generator : new GdGenerator();
 
         $this->addShape(0, EmptyShape::class);
-
-        $this->addColor(1, new Color(0, 0, 0));
-
     }
 
     /**
@@ -101,6 +100,16 @@ class Image
     public function setBackgroundColor(Color $backgroundColor)
     {
         $this->backgroundColor = $backgroundColor;
+    }
+
+    /**
+     * @param mixed $defaultColor
+     *
+     * @return $this
+     */
+    public function setDefaultColor($defaultColor)
+    {
+        $this->defaultColor = $defaultColor;
     }
 
     public function generate()
@@ -201,7 +210,7 @@ class Image
     {
         return array_key_exists($key, $this->colors)
             ? $this->colors[$key]
-            : new Color(0, 0, 0);
+            : $this->defaultColor;
     }
 
     /**
