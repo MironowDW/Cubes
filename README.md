@@ -2,6 +2,7 @@ PatternGif
 ========
 ![Travis](https://travis-ci.org/MironowDW/PatternGif.svg?branch=master)
 [![Test Coverage](https://codeclimate.com/github/MironowDW/PatternGif/badges/coverage.svg)](https://codeclimate.com/github/MironowDW/PatternGif/coverage)
+[![Code Climate](https://codeclimate.com/github/MironowDW/PatternGif/badges/gpa.svg)](https://codeclimate.com/github/MironowDW/PatternGif)
 
 PatternGif - это библиотека для генерации картинок состоящих из квадратов
 
