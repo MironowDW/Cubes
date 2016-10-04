@@ -52,6 +52,26 @@ $image->addColor(2, new \PatternGif\Color(0, 0, 255));
 $image->saveImage('/tmp/image.png');
 ```
 
+### Добавляем треугольники
+![Example 4](https://s21.postimg.org/be1x0ww6v/1_black_box_30x30x0_actual.png)
+
+```php
+<?php
+
+$pattern = [
+    [2,1,3],
+    [1,0,1],
+    [5,1,4],
+];
+
+$image = new \PatternGif\Image($pattern);
+$image->addShape(2, Shape\ShapeTriangleBottomRight::class);
+$image->addShape(3, Shape\ShapeTriangleBottomLeft::class);
+$image->addShape(4, Shape\ShapeTriangleTopLeft::class);
+$image->addShape(5, Shape\ShapeTriangleTopRight::class);
+$image->saveImage('/tmp/image.png');
+```
+
 ### Выводим буквы (поддерживается русский и английский алфавит)
 ![Example Q](https://s10.postimg.org/schh62cpl/english_Q_actual.png)
 ![Example R](https://s12.postimg.org/wrbjmkpn1/english_R_actual.png)
