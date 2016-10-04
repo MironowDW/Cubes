@@ -6,6 +6,17 @@ engines:
       languages:
       - javascript
       - php
+    exclude_fingerprints:
+        - 642c5d04ac473cb575c452268d11c3c6
+        - daa2f5d2dd6582c76f4580572d5e5cee
+        - 1943755da65210964e56ffc790982c92
+        - 3dc207a11e8d2bc28f6443ebcc96960f
+        - f54bd6431144583cd722e8b5e0e89924
+        - dca21c9fdf18552ddea2cbc90045be63
+        - 8541584e53b4d9d6d2139ef5ddc3869a
+        - 0e420249deef7ccc44c9700f6e0275b6
+        - 28bd8c2fd41649ecf2bb251420ea636e
+        - 1dd120381de32233233ae86e1a888bc6
   fixme:
     enabled: true
   phpmd:
