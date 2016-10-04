@@ -6,7 +6,7 @@ PatternGif
 
 PatternGif - это библиотека для генерации картинок состоящих из квадратов
 
-Установка
+### Установка
 ```shell
 $ composer require mironov-dv/pattern-gif
 ```
