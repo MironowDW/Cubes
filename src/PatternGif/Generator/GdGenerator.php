@@ -23,7 +23,7 @@ class GdGenerator implements GeneratorInterface
     {
         $color = $this->convertColor($color);
 
-        imagefilledrectangle($this->resource, $cube->getX1(), $cube->getY1(), $cube->getX2(), $cube->getY2(), $color);
+        imagefilledrectangle($this->resource, $cube->getPointX1(), $cube->getPointY1(), $cube->getPointX2(), $cube->getPointY2(), $color);
     }
 
     public function drawPolygon(array $points, $pointsCount, Color $color)

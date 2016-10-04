@@ -21,9 +21,9 @@ class ShapeTriangleTopLeft implements ShapeInterface
     public function draw(GeneratorInterface $generator, Element $element, Color $color)
     {
         $points = [
-            $element->getX1(), $element->getY1(),
-            $element->getX2(), $element->getY1(),
-            $element->getX1(), $element->getY2(),
+            $element->getPointX1(), $element->getPointY1(),
+            $element->getPointX2(), $element->getPointY1(),
+            $element->getPointX1(), $element->getPointY2(),
         ];
 
         $generator->drawPolygon($points, 3, $color);

@@ -5,20 +5,20 @@ namespace PatternGif;
 class Element
 {
 
-    private $x1;
-    private $x2;
-    private $y1;
-    private $y2;
+    private $pointX1;
+    private $pointX2;
+    private $pointY1;
+    private $pointY2;
 
     private $key;
 
-    function __construct($key, $x1, $y1, $x2, $y2)
+    function __construct($key, $pointX1, $pointY1, $pointX2, $pointY2)
     {
         $this->key = $key;
-        $this->x1 = $x1;
-        $this->x2 = $x2;
-        $this->y1 = $y1;
-        $this->y2 = $y2;
+        $this->pointX1 = $pointX1;
+        $this->pointX2 = $pointX2;
+        $this->pointY1 = $pointY1;
+        $this->pointY2 = $pointY2;
     }
 
     public function getKey()
@@ -26,23 +26,23 @@ class Element
         return $this->key;
     }
 
-    public function getX1()
+    public function getPointX1()
     {
-        return $this->x1;
+        return $this->pointX1;
     }
 
-    public function getX2()
+    public function getPointX2()
     {
-        return $this->x2;
+        return $this->pointX2;
     }
 
-    public function getY1()
+    public function getPointY1()
     {
-        return $this->y1;
+        return $this->pointY1;
     }
 
-    public function getY2()
+    public function getPointY2()
     {
-        return $this->y2;
+        return $this->pointY2;
     }
 }
